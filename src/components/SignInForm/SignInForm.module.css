@@ -1,0 +1,19 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+
+.form *{
+  margin-top: 1rem;
+}
+
+.input{
+  padding: 0.5rem 1rem;
+}
+
+.invalid{
+  background-color: rgba(226, 29, 29, 0.575);
+}
+
