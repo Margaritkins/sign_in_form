@@ -2,14 +2,11 @@ import React, { Component } from "react";
 import cx from "classnames";
 import styles from "./SignInForm.module.css";
 const initialValue = {
-  male: false,
-  female: false,
+  radio: '',
   check: false,
   login: "",
   email: "",
   password: "",
-  maleValid: true,
-  femaleValid: true,
   checkValid: true,
   loginValid: true,
   emailValid: true,
@@ -26,7 +23,6 @@ class SignInForm extends Component {
 
   handleForm = (e) => {
     e.preventDefault();
-    // e.target.reset()
     this.setState({
       ...initialValue,
     });
@@ -39,13 +35,11 @@ class SignInForm extends Component {
   //   handlePassword=(e)=>{
   //     this.setState ({password:e.target.value})
   //   }
-  hndleRadio = ({ target: { name, checked } }) => {
-    // console.dir(target);
-    this.setState({ [name]: checked });
+  hndleRadio = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
   };
 
   hndleCheck = ({ target: { name, checked } }) => {
-    // console.dir(target);
     this.setState({ [name]: checked });
   };
 
@@ -60,27 +54,14 @@ class SignInForm extends Component {
     const {
       male,
       female,
-      check,
       login,
       email,
       password,
-      maleValid,
-      femaleValid,
-      checkValid,
       loginValid,
       emailValid,
       passwordValid,
     } = this.state;
-    const classMale = cx(styles.imput, {
-      [styles.invalid]: !maleValid,
-    });
-    const classFemale = cx(styles.imput, {
-      [styles.invalid]: !femaleValid,
-    });
-    const classesCheck = cx(styles.input, {
-      [styles.invalid]: !checkValid,
-    });
-    const classesLogin = cx(styles.input, {
+        const classesLogin = cx(styles.input, {
       [styles.invalid]: !loginValid,
     });
     const classesEmail = cx(styles.input, {
@@ -93,7 +74,6 @@ class SignInForm extends Component {
       <form className={styles.form} onSubmit={this.handleForm}>
         <label htmlFor="male">
           <input
-            className={classMale}
             value={male}
             onChange={this.hndleRadio}
             id="male"
@@ -104,7 +84,6 @@ class SignInForm extends Component {
         </label>
         <label htmlFor="female">
           <input
-            className={classFemale}
             value={female}
             onChange={this.hndleRadio}
             id="female"
@@ -116,8 +95,6 @@ class SignInForm extends Component {
 
         <label htmlFor="">
           <input
-            className={classesCheck}
-            checked={check}
             onChange={this.hndleCheck}
             name="check"
             type="checkbox"
